@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit files{% endblock %}
+
+{% block body %}
+
+    {{ include('files/_form.html.twig', {'button_label': 'Modifier', 'editForm' : true}) }}
+
+
+{% endblock %}

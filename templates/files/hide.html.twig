@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Files index
+{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'gf-hide'} %}
+{% endblock %}
+
+{% block body %}
+
+	<table id="Datatable" class="table table-bordered table-striped">
+		<thead>
+			<tr>
+				<th>Nom</th>
+				<th>Modifier le</th>
+				<th>Type</th>
+				<th>Taille</th>
+				<th>Date de création</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for file in files %}
+            {% set hide = file.hide %}
+				<tr>
+					<td><a href="{{path('files_edit',{'id' : file.id})}}"><i class="fa fa-file"></i> {{ file.name }}</a></td>
+					<td>{{ file.updatedAt ? file.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td>{{ file.type }}</td>
+					<td>{{ file.size }}</td>
+					<td>{{ file.createdAt ? file.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+					<td style="text-align:center; width:15%">
+						{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') %}
+
+						
+								<a href={{path("file_hide_action",{'id' : file.id} )}} class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Afficher">
+									<i class="fa fa-eye" aria-hidden="true"></i>
+								</a>
+								<a href={{path("file_trash_action",{'id' : file.id} )}} class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Supprimer">
+									<i class="fa fa-trash" aria-hidden="true"></i>
+								</a>
+					
+								
+						{% endif %}
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="6">no records found</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	{# <a href="{{ path('files_new') }}">Create new</a> #}
+{% endblock %}
+{% block js %}
+	<script>
+		$("#Datatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

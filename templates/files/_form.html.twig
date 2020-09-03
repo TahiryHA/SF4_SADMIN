@@ -1,0 +1,28 @@
+{% form_theme form with ['bootstrap_4_layout.html.twig'] only %}
+
+{{ form_start(form) }}
+{% if editForm %}
+{% do form.filename.setRendered %}
+{% endif %}
+<div class="card card-dark">
+	<div class="card-header">
+		<h3 class="card-title"></h3>
+	</div>
+	<!-- /.card-header -->
+	<!-- form start -->
+	<div class="card-body">
+		<div class="form-group row">
+			<div class="col-sm-12">
+				{{ form_widget(form) }}
+			</div>
+		</div>
+	</div>
+	<!-- /.card-body -->
+	<div class="card-footer">
+		<a class="float-left" href="{{ path('files_index') }}">Retour à la liste</a>
+		<button class="btn btn-primary float-right">{{ button_label|default('Enregistrer') }}</button>
+	</div>
+	<!-- /.card-footer -->
+
+</div>
+{{ form_end(form) }}

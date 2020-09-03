@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit folders{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'dc-tmdc'} %}
+{% endblock %}
+
+
+{% block body %}
+
+    {{ include('folders/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+{% endblock %}

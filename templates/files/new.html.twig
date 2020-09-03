@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New files{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'gf-add'} %}
+{% endblock %}
+
+{% block body %}
+
+    {{ include('files/_form.html.twig', {'editForm' : false}) }}
+
+{% endblock %}

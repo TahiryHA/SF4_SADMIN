@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}folders index{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'gd-archive'} %}
+{% endblock %}
+
+{% block body %}
+
+    <table id="Datatable" class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Nom</th>
+                <th>Modifier le</th>
+                <th>Type</th>
+                <th>Taille</th>
+                <th>Date de création</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for folder in folders %}
+            <tr>
+                <td><a href="{{ path('folders_show',{'id' : folder.id}) }}">
+							<i class="fa fa-folder"></i>
+							{{ folder.name }}</a></td>
+                <td>{{ folder.updatedAt ? folder.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td></td>
+                <td>{{ folder.size }}</td>
+                <td>{{ folder.createdAt ? folder.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href={{path("folder_archive_action",{'id' : folder.id} )}} class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Unarchive">
+                        <i class="fa fa-archive" aria-hidden="true"></i>
+                    </a>
+                    <a href={{path("folder_trash_action",{'id' : folder.id} )}} class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Supprimer">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    {# <a href="{{ path('folders_new') }}">Create new</a> #}
+{% endblock %}
+{% block js %}
+	<script>
+$("#Datatable").DataTable({
+
+"searching": true,
+"order": [
+[0, "DESC"]
+],
+"responsive": true,
+"autoWidth": false
+});
+	</script>
+{% endblock %}

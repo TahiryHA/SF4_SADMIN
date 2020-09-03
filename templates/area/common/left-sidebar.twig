@@ -1,0 +1,158 @@
+<!-- Sidebar -->
+{% set in_rh = ['gd-list','gc-list','gc-add','gf-list','gf-add','gd-add','gd-hide','gd-archive','gd-trash','gf-archive','gf-hide','gf-trash'] %}
+{% set in_gd = ['gd-list','gd-add','gd-hide','gd-archive','gd-trash'] %}
+{% set in_gc = ['gc-list','gc-add'] %}
+{% set in_gf = ['gf-list','gf-add','gf-archive','gf-hide','gf-trash'] %}
+
+<div
+	class="sidebar">
+	<!-- Sidebar Menu -->
+	<nav class="mt-2">
+		<ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+			{% if is_granted('ROLE_SUPER_ADMIN') or is_granted('ROLE_ADMIN') %}
+				<li class="nav-item has-treeview {% if active in in_rh %} menu-open {% endif %}">
+					<a href="javascript:void()" class="nav-link{% if active in in_rh %} active {% endif %}">
+						<i class="nav-icon fa fa-calendar nav-icon"></i>
+						<p>
+							Documents
+							<i class="right fas fa-angle-left"></i>
+						</p>
+					</a>
+					<ul class="nav nav-treeview">
+
+						<li class="nav-item has-treeview {% if active in in_gd %} menu-open {% endif %}">
+							<a href="" class="nav-link {% if active in in_gd %} active {% endif %}">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Gestion de dossier
+									<i class="right fas fa-angle-left"></i>
+
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+
+								<li class="nav-item">
+									<a href="{{path('folders_index')}}" class="nav-link {% if active == 'gd-list' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Liste de dossier
+										</p>
+									</a>
+
+								</li>
+
+								<li class="nav-item">
+									<a href="{{path('folders_new')}}" class="nav-link {% if active == 'gd-add' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Ajout de dossier
+										</p>
+									</a>
+
+								</li>
+
+								<li class="nav-item">
+									<a href="{{path('folders_archive')}}" class="nav-link {% if active == 'gd-archive' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Dossier archiver
+										</p>
+									</a>
+
+								</li>
+								<li class="nav-item">
+									<a href="{{path('folders_hide')}}" class="nav-link {% if active == 'gd-hide' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Dossier cacher
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{path('folders_trash')}}" class="nav-link {% if active == 'gd-trash' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Corbeille
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+								
+
+							</ul>
+						</li>
+						<li class="nav-item has-treeview {% if active in in_gf %} menu-open {% endif %}">
+							<a href="" class="nav-link {% if active in in_gf %} active {% endif %}">
+								<i class="far fa-circle nav-icon"></i>
+								<p>
+									Gestion de fichier
+									<i class="right fas fa-angle-left"></i>
+
+								</p>
+							</a>
+							<ul class="nav nav-treeview">
+
+								<li class="nav-item">
+									<a href="{{path('files_index')}}" class="nav-link {% if active == 'gf-list' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Liste de fichier
+										</p>
+									</a>
+
+								</li>
+
+								
+								<li class="nav-item">
+									<a href="{{path('files_new')}}" class="nav-link {% if active == 'gf-add' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Ajout de fichier
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{path('files_archive')}}" class="nav-link {% if active == 'gf-archive' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Fichier archiver
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{path('files_hide')}}" class="nav-link {% if active == 'gf-hide' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Fichier cacher
+										</p>
+									</a>
+								</li>
+								<li class="nav-item">
+									<a href="{{path('files_trash')}}" class="nav-link {% if active == 'gf-trash' %} active {% endif %}">
+										<i class="far fa-circle nav-icon"></i>
+										<p>
+											Corbeille
+										</p>
+									</a>
+								</li>
+
+							</ul>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item">
+					<a href="{{path("user.index")}}" class="nav-link {% if active == 'user' %} active {% endif %}">
+						<i class="nav-icon fas fa-users"></i>
+						<p>
+							Utilisateur
+						</p>
+					</a>
+				</li>
+			{% endif %}
+
+
+		</ul>
+	</nav>
+	<!-- /.sidebar-menu -->
+</div>
+<!-- /.sidebar -->

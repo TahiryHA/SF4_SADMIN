@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New folders{% endblock %}
+
+{% block left_sidebar %}
+	{% include 'area/common/left-sidebar.twig' with { active: 'gd-add'} %}
+{% endblock %}
+
+{% block body %}
+
+    {{ include('folders/_form.html.twig') }}
+
+{% endblock %}
