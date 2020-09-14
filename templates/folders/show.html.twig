@@ -43,6 +43,9 @@
 								<a href={{path("file_trash_action",{'id' : file.id} )}} class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer">
 									<i class="fa fa-trash" aria-hidden="true"></i>
 								</a>
+								<a href={{path("generate", {'filename': file.filename})}} class="btn btn-sm btn-light" data-toggle="tooltip" data-placement="top" title="Télécharger">
+									<i class="fa fa-download" aria-hidden="true"></i>
+								</a>
 							{# <a href={{path("files_delete",{'id' : file.id, '_token' : csrf_token('delete' ~ file.id) } )}} class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="top" title="Supprimer">
 								<i class="fa fa-trash" aria-hidden="true"></i>
 							</a> #}
